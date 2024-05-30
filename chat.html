@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>chat</title>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #terminal {
+      width: 75%;
+      height: 450px;
+      border: 1px solid white;
+      overflow-y: scroll;
+      margin-left: 20px;
+      padding: 10px;
+      opacity: 0;
+      display: none;
+      transition: opacity 2s ease-in-out;
+    }
+
+    #input {
+      color: black;
+      display: inline-block;
+    }
+
+    #intro {
+      width: 35%;
+      text-align: center;
+      margin-right: 20px;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    #video {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    #terminal::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #miku {
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+      display: none;
+    }
+  </style>
+</body>
+<div id="intro">
+  <h1>原神 启动</h1>
+  <!--  <p>Diviners used to scorch tortoise shells to read fortunes and determine auspicious or inauspicious signs according to the cracks resembling those on jade, which was called 'YuZhao'. </p> -->
+</div>
+<pre id="miku">
+            ___                       ___           ___      
+           /\__\          ___        /\__\         /\__\     
+          /::|  |        /\  \      /:/  /        /:/  /     
+         /:|:|  |        \:\  \    /:/__/        /:/  /      
+        /:/|:|__|__      /::\__\  /::\__\____   /:/  /  ___  
+       /:/ |::::\__\  __/:/\/__/ /:/\:::::\__\ /:/__/  /\__\ 
+       \/__/~~/:/  / /\/:/  /    \/_|:|~~|~    \:\  \ /:/  / 
+             /:/  /  \::/__/        |:|  |      \:\  /:/  /  
+            /:/  /    \:\__\        |:|  |       \:\/:/  /   
+           /:/  /      \/__/        |:|  |        \::/  /    
+           \/__/                     \|__|         \/__/      
+⣿⣿⣿⣿⣿⣿⣿⣿⡿⣃⠸⠀⠸⠟⣐⣿⣿⣿⣿⣿⣶⣨⢙⣿⣿⣷⣌⡓⢤⡋⢺⢑⣬⣂⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦
+⣿⣿⣿⣿⣿⣿⣿⢟⣶⡇⢀⠆⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⢿⣷⣆⡊⢰⠀⡱⠱⢂⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣟⣸⣿⡇⢿⢰⣷⢺⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣭⡛⠿⣦⡅⠠⢀⢤⢡⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⡟⣿⣿⡇⠀⣾⣿⣇⢿⣿⣿⣆⢉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡈⠓⢤⡐⣀⢃⢠⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⢿⣿⣿⡇⣸⣿⣿⣿⡌⢿⣿⣿⣆⢿⠶⠍⢙⡛⠏⢙⣿⣿⣿⣿⣿⣷⡌⠂⡈⠐⠘⣆⣄⢙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⢾⣿⣿⠁⣿⣿⣿⣿⣇⢦⠹⣿⣿⣧⡴⣿⣿⣿⠗⠒⢨⣉⣉⠛⠻⠿⣿⣆⠕⡈⠢⠈⠻⣶⠚⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⡿⣼⣿⣿⢰⣿⣿⣿⡹⣿⠼⢡⣌⡻⣿⣿⣬⡻⣿⢀⣆⢿⣿⣿⡇⡀⣜⠻⣿⡇⣙⡼⢣⣷⣿⣿⣄⢹⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⢓⣿⣿⢏⢸⣿⠙⣿⣧⠻⢀⢿⠿⣿⠶⣍⡻⠿⣎⡻⢿⣦⣵⣶⣾⣿⢸⣷⡎⣻⡌⣰⣿⣿⣿⣿⣿⣷⡎⢻⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⡿⣼⣿⢇⣼⢸⣿⢠⠸⣿⣧⠹⠄⠀⢽⣦⣙⣿⣷⣶⣭⣤⣍⣙⡻⣿⣿⡎⣿⡇⠥⣬⠸⢿⣿⣿⣿⣿⣿⣿⣦⡈⠻⣿⣿⣿
+⣿⣿⣿⣿⢡⣿⢣⣾⣿⣉⣿⠈⢧⠹⣿⣿⡀⢄⢠⣭⣴⡟⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢻⡟⢠⣌⠋⢤⡟⠿⣿⣿⣿⣿⣿⣿⣦⠈⠻⣿
+⣿⣿⣿⠇⡿⠁⣼⣿⣿⣷⠻⡖⡜⣷⡝⢿⣷⡰⡀⢙⡿⣷⣿⣿⡿⣟⣽⣿⣿⡿⣫⣿⢾⠇⡀⠖⣘⡳⠶⣶⣶⣭⣽⣿⣿⣿⣿⣷⣆⠈
+⣿⣿⡏⡸⡑⢠⣿⣿⣿⣿⣷⡥⢵⡸⣿⣮⣿⣷⡱⡀⣛⠿⢿⣿⣿⣿⣿⡿⢏⣴⡿⢋⠘⢊⣶⣿⣿⣿⣶⣍⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷
+⣿⡿⠑⣸⠂⣿⣿⣿⣿⣿⣿⣷⡀⢱⡙⣿⣿⣮⡝⠿⣜⢻⣷⣦⣤⣭⣭⠄⠈⣡⣾⣿⢠⣿⣿⣿⣿⣿⣿⣿⣄⢿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⢃⣼⡷⢸⣿⣿⣿⣿⣿⣿⣿⣷⡀⠻⣦⡻⣿⣿⣿⣶⣥⣘⡻⣿⣿⣁⠐⠺⣿⣿⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿
+⠏⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⢝⡿⣧⣝⡿⣿⣿⣿⣿⣿⣿⢵⣶⠥⠹⣿⡇⢸⣿⣿⣿⣿⣿⣿⣿⣿⡇⢿⣿⣿⣿⣿⣿⣿⣿
+⣸⣿⣿⣏⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡳⣦⡊⠛⠲⣭⡛⠻⢿⣏⣿⣿⡇⠳⡙⣿⢺⣿⣿⣿⣿⣿⣿⣿⣿⢳⢸⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣷⡀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣬⣿⣿⣶⣄⣙⠛⡒⠐⣻⡛⢡⣷⣜⣘⣾⣿⣿⣿⣿⣿⣿⣿⣿⢸⡇⢿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣷⡈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠻⣿⣿⣷⡶⡸⢫⣷⢻⣿⣿⣎⡸⣿⣿⣿⣿⣿⣿⣿⣿⢸⣷⢸⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣦⡙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣬⡙⠏⣽⣿⣿⣿⣸⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⢹⣿⡇⣿⣿⣿⣿⣿⣿ 
+    
+</pre>
+<!--  -->
+<div id="terminal"></div>
+<script type="text/javascript">
+
+  var intro = document.getElementById("intro");
+  var miku = document.getElementById("miku");
+  intro.style.display = "none";
+  /**
+  setTimeout(function () {
+    setTimeout(function () {
+      intro.style.opacity = "1";
+    }, 0);
+    setTimeout(function () {
+      intro.style.opacity = "0";
+    }, 2000);
+  }, 0);
+
+  setTimeout(function () {
+    intro.style.display = "none";
+    miku.style.display = "block";
+    setTimeout(function () {
+      miku.style.opacity = 1;
+    }, 100);
+    setTimeout(function () {
+      miku.style.opacity = 0;
+    }, 2000);
+  }, 4000);
+**/
+  var newDiv;
+  var terminal;
+  setTimeout(function () {
+    document.body.removeChild(miku);
+    terminal = document.getElementById('terminal');
+    terminal.style.display = "block";
+    setTimeout(function () {
+      terminal.style.opacity = "1";
+      print('Welcome to the GPT3.5');
+      // print('你好，我是蓬莱夜，来自月都的使者');
+      print(`Type 'help' for a list of available commands.`)
+      writeInput();
+    }, 100);
+  }, 0);
+
+  function print(text) {
+    var output = document.createElement('p')
+    output.innerText = text;
+    terminal.appendChild(output)
+  }
+
+  var waiting = document.createElement('p')
+  waiting.innerText = '请稍后'
+
+  function writeInput() {
+    var span = document.createElement('span')
+    span.innerText = ' > '
+    span.style.color = 'green'
+    terminal.appendChild(span);
+    var input = document.createElement('input')
+    input.id = 'input'
+    terminal.appendChild(input)
+    input.focus()
+    input.addEventListener('keyup', function (event) {
+      if (event.key === 'Enter') {
+        print(input.value)
+        input.remove()
+        runCommand(input.value)
+      }
+    })
+  }
+
+
+  // 输入文本，按回车后触发
+  function runCommand(text) {
+    switch (text) {
+      case 'help':
+        print('List of available commands:')
+        print('- help: display this help message')
+        print('- date: display the current date and time')
+        writeInput()
+        break
+      case 'date':
+        const now = new Date()
+        print(now.toLocaleString())
+        writeInput()
+        break
+      default:
+        terminal.appendChild(waiting)
+        startChat(text)
+
+      // 非流式调用
+      // fetch('http://127.0.0.1:8000/chat/?query=' + text)
+      //   .then(function (response) {
+      //     if (response.ok) {
+      //       console.log(response);
+      //       return response.json();
+      //     }
+      //     throw new Error('Network response was not ok.');
+      //   })
+      //   .then(function (data) {
+      //     // 处理响应数据
+      //     print(data['answer']);
+      //     waiting.remove();
+      //     writeInput()
+      //   })
+      //   .catch(function (error) {
+      //     // 处理错误
+      //     print(error['answer']);
+      //     writeInput()
+      //   });
+    }
+
+  }
+
+
+  // 流式调用
+  function startChat(text) {
+    let output = document.createElement('p');
+    var comment = '';
+    terminal.appendChild(output);
+    const eventSource = new EventSource(`http://127.0.0.1:8000/stream/?query=${encodeURIComponent(text)}`);
+    eventSource.onmessage = function (event) {
+      waiting.remove() // 当有消息返回时，移除请稍后
+      const data = event.data.trim();
+      comment += data;
+      if (data === '[DONE]') {
+        eventSource.close();
+        writeInput();
+      } else {
+        output.innerHTML = comment;
+        if (terminal) {
+          terminal.scrollTop = terminal.scrollHeight;
+        }
+
+      }
+    };
+    eventSource.onerror = function (event) {
+      console.error('EventSource failed:', event);
+      eventSource.close();
+      // writeInput()
+    };
+
+  }
+
+
+</script>
+
+</html>
